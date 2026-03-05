@@ -1,5 +1,6 @@
 import { SiteHeader } from "@/components/site-header"
 import { HeroSection } from "@/components/hero-section"
+import { CollaborationShowcase } from "@/components/collaboration-showcase"
 import { PlatformDownloads } from "@/components/platform-downloads"
 import { InstallationGuide } from "@/components/installation-guide"
 import { AfterInstall } from "@/components/after-install"
@@ -18,6 +19,7 @@ export default function Page() {
       <SiteHeader />
       <main>
         <HeroSection />
+        <CollaborationShowcase />
         <Divider />
         <PlatformDownloads />
         <Divider />
