@@ -77,6 +77,25 @@ const simulatedEdits = [
   { line: 16, col: 0, text: "    console.log(`Received: ${data}`)", delay: 2800 },
 ]
 
+const cursorTimeline: Record<string, { line: number; col: number }[]> = {
+  Karan: [
+    { line: 7, col: 40 },
+    { line: 12, col: 28 },
+    { line: 16, col: 30 },
+  ],
+  // Jennie stays on the same line while "typing" across it
+  Jennie: [
+    { line: 12, col: 4 },
+    { line: 12, col: 18 },
+    { line: 12, col: 32 },
+  ],
+  Ted: [
+    { line: 10, col: 6 },
+    { line: 14, col: 20 },
+    { line: 18, col: 8 },
+  ],
+}
+
 interface CursorPos {
   name: string
   color: string
@@ -85,8 +104,9 @@ interface CursorPos {
 }
 
 const collaborators: CursorPos[] = [
-  { name: "Karan", color: "rgb(110, 231, 183)", line: 7, col: 10 },
-  { name: "Jennie", color: "rgb(96, 165, 250)", line: 12, col: 5 },
+  { name: "Karan", color: "rgb(59, 130, 246)", line: 7, col: 10 }, // blue
+  { name: "Jennie", color: "rgb(244, 114, 182)", line: 12, col: 5 }, // pink
+  { name: "Ted", color: "rgb(52, 211, 153)", line: 16, col: 8 }, // teal
 ]
 
 function LineNumbers({ count }: { count: number }) {
@@ -151,11 +171,30 @@ export function EditorSimulation() {
       })
 
       setCursors((prev) =>
-        prev.map((c, i) => ({
-          ...c,
-          line: edit.line + (i === 0 ? 0 : 2),
-          col: edit.col + (i === 0 ? edit.text.length : 0),
-        }))
+        prev.map((c) => {
+          // Jennie: stays on one line and "types" across it
+          if (c.name === "Jennie") {
+            const typingLine = 12
+            const baseCol = 4
+            const step = Math.min(editIndex + 1, 6) // more steps = moves further like typing
+            return {
+              ...c,
+              line: typingLine,
+              col: baseCol + step * 4,
+            }
+          }
+
+          // Others follow their own path
+          const path = cursorTimeline[c.name]
+          if (!path) return c
+          const step = Math.min(editIndex, path.length - 1)
+          const target = path[step]
+          return {
+            ...c,
+            line: target.line,
+            col: target.col,
+          }
+        })
       )
 
       setEditIndex((prev) => prev + 1)

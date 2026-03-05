@@ -47,7 +47,7 @@ export function HeroSection() {
           </h1>
 
           <div className="flex flex-col gap-1">
-            <p className="text-xl text-foreground font-medium md:text-2xl">
+            <p className="text-lg text-muted-foreground">
               Code collaboration made simple
             </p>
             <p className="text-lg text-muted-foreground">

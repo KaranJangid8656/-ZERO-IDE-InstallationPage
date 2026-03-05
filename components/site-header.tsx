@@ -19,7 +19,7 @@ export function SiteHeader() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-border/60 bg-background/70 backdrop-blur-2xl">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 h-16">
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2 -ml-18">
           <TerminalSquare className="h-5 w-5 text-foreground" />
           <span className="font-mono text-sm font-bold text-foreground">-Zero IDE</span>
         </Link>
@@ -46,7 +46,7 @@ export function SiteHeader() {
           })}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 -mr-20">
           <ThemeToggle />
           <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
             <Github className="h-5 w-5" />

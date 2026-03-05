@@ -8,9 +8,7 @@ import { SiteFooter } from "@/components/site-footer"
 
 function Divider() {
   return (
-    <div className="mx-auto max-w-6xl px-6">
-      <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-    </div>
+    null
   )
 }
 
