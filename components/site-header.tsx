@@ -33,7 +33,7 @@ export function SiteHeader() {
                 href={item.href}
                 className={`relative px-3 py-1.5 rounded-md text-sm transition-colors ${
                   isActive
-                    ? "text-foreground font-medium bg-muted"
+                    ? "text-foreground font-medium"
                     : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                 }`}
               >
@@ -48,7 +48,7 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-3 -mr-20">
           <ThemeToggle />
-          <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+          <a href="https://github.com/KaranJangid8656/-Zero-IDE-InstallationPage" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
             <Github className="h-5 w-5" />
             <span className="sr-only">GitHub</span>
           </a>

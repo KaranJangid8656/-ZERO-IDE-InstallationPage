@@ -4,7 +4,7 @@ import { CollaborationShowcase } from "@/components/collaboration-showcase"
 import { PlatformDownloads } from "@/components/platform-downloads"
 import { InstallationGuide } from "@/components/installation-guide"
 import { AfterInstall } from "@/components/after-install"
-import { SecuritySection } from "@/components/security-section"
+import { LiveCollaborationSteps } from "@/components/live-collaboration-steps"
 import { SiteFooter } from "@/components/site-footer"
 
 function Divider() {
@@ -21,6 +21,8 @@ export default function Page() {
         <HeroSection />
         <CollaborationShowcase />
         <Divider />
+        <LiveCollaborationSteps />
+        <Divider />
         <PlatformDownloads />
         <Divider />
         <div className="bg-muted/30">
@@ -30,8 +32,7 @@ export default function Page() {
         <div className="bg-muted/30">
           <AfterInstall />
         </div>
-        <Divider />
-        <SecuritySection />
+
       </main>
       <SiteFooter />
     </div>
