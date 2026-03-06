@@ -4,42 +4,6 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: oklch(0.98 0.002 250);
-  --foreground: oklch(0.18 0.01 250);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.18 0.01 250);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.18 0.01 250);
-  --primary: oklch(0.35 0.015 250);
-  --primary-foreground: oklch(0.97 0 0);
-  --secondary: oklch(0.95 0.003 250);
-  --secondary-foreground: oklch(0.3 0.01 250);
-  --muted: oklch(0.94 0.003 250);
-  --muted-foreground: oklch(0.5 0.01 250);
-  --accent: oklch(0.35 0.015 250);
-  --accent-foreground: oklch(0.97 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.88 0.005 250);
-  --input: oklch(0.88 0.005 250);
-  --ring: oklch(0.5 0.02 250);
-  --chart-1: oklch(0.5 0.02 250);
-  --chart-2: oklch(0.6 0.015 250);
-  --chart-3: oklch(0.4 0.01 250);
-  --chart-4: oklch(0.7 0.01 250);
-  --chart-5: oklch(0.55 0.02 250);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.97 0.002 250);
-  --sidebar-foreground: oklch(0.18 0.01 250);
-  --sidebar-primary: oklch(0.35 0.015 250);
-  --sidebar-primary-foreground: oklch(0.97 0 0);
-  --sidebar-accent: oklch(0.95 0.003 250);
-  --sidebar-accent-foreground: oklch(0.3 0.01 250);
-  --sidebar-border: oklch(0.88 0.005 250);
-  --sidebar-ring: oklch(0.5 0.02 250);
-}
-
-.dark {
   --background: oklch(0.12 0.01 250);
   --foreground: oklch(0.88 0.005 250);
   --card: oklch(0.16 0.01 250);
@@ -64,6 +28,7 @@
   --chart-3: oklch(0.45 0.005 250);
   --chart-4: oklch(0.8 0.005 250);
   --chart-5: oklch(0.55 0.005 250);
+  --radius: 0.625rem;
   --sidebar: oklch(0.14 0.01 250);
   --sidebar-foreground: oklch(0.88 0.005 250);
   --sidebar-primary: oklch(0.82 0.005 250);
@@ -72,6 +37,45 @@
   --sidebar-accent-foreground: oklch(0.82 0.005 250);
   --sidebar-border: oklch(0.25 0.01 250);
   --sidebar-ring: oklch(0.7 0.005 250);
+}
+
+.light {
+  --background: oklch(0.98 0.002 250);
+  --foreground: oklch(0.18 0.01 250);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.01 250);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.01 250);
+  --primary: oklch(0.35 0.015 250);
+  --primary-foreground: oklch(0.97 0 0);
+  --secondary: oklch(0.95 0.003 250);
+  --secondary-foreground: oklch(0.3 0.01 250);
+  --muted: oklch(0.94 0.003 250);
+  --muted-foreground: oklch(0.5 0.01 250);
+  --accent: oklch(0.35 0.015 250);
+  --accent-foreground: oklch(0.97 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.88 0.005 250);
+  --input: oklch(0.88 0.005 250);
+  --ring: oklch(0.5 0.02 250);
+  --chart-1: oklch(0.5 0.02 250);
+  --chart-2: oklch(0.6 0.015 250);
+  --chart-3: oklch(0.4 0.01 250);
+  --chart-4: oklch(0.7 0.01 250);
+  --chart-5: oklch(0.55 0.02 250);
+  --sidebar: oklch(0.97 0.002 250);
+  --sidebar-foreground: oklch(0.18 0.01 250);
+  --sidebar-primary: oklch(0.35 0.015 250);
+  --sidebar-primary-foreground: oklch(0.97 0 0);
+  --sidebar-accent: oklch(0.95 0.003 250);
+  --sidebar-accent-foreground: oklch(0.3 0.01 250);
+  --sidebar-border: oklch(0.88 0.005 250);
+  --sidebar-ring: oklch(0.5 0.02 250);
+}
+
+.dark {
+  /* This is now the same as :root, but we keep the selector for backwards compatibility if needed */
 }
 
 @theme inline {
@@ -118,31 +122,24 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  *::-webkit-scrollbar {
+    display: none;
   }
 
   body {
     @apply bg-background text-foreground;
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
   }
-}
 
-/* Hide scrollbar for all browsers aggressively */
-* {
-  -ms-overflow-style: none !important;
-  scrollbar-width: none !important;
-}
-
-*::-webkit-scrollbar {
-  display: none !important;
-}
-
-html,
-body {
-  -ms-overflow-style: none !important;
-  scrollbar-width: none !important;
-  overflow: -moz-scrollbars-none !important;
-}
-
-body::-webkit-scrollbar,
-html::-webkit-scrollbar {
-  display: none !important;
+  body::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari and Opera */
+  }
 }

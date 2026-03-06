@@ -11,7 +11,6 @@ const navItems = [
   { label: "Download", href: "/" },
   { label: "Docs", href: "/docs" },
   { label: "Changelog", href: "/changelog" },
-  { label: "Demo", href: "/demo" },
 ]
 
 export function SiteHeader() {
@@ -19,14 +18,11 @@ export function SiteHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-[#0a0a0a]/95 backdrop-blur-2xl transition-all dark">
+    <header className="fixed top-0 left-0 right-0 z-50 border-b border-border/60 bg-background/70 backdrop-blur-2xl transition-all">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 h-16">
-        <Link href="/" className="flex items-center gap-2 md:-ml-14" onClick={() => setIsMobileMenuOpen(false)}>
-          <img 
-            src="/logo.jpeg" 
-            alt="-Zero IDE Logo" 
-            className="h-9 w-auto object-contain"
-          />
+        <Link href="/" className="flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
+          <TerminalSquare className="h-5 w-5 text-foreground" />
+          <span className="font-mono text-sm font-bold text-foreground">-Zero IDE</span>
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex">
@@ -76,7 +72,7 @@ export function SiteHeader() {
       
       {/* Mobile Menu Dropdown */}
       {isMobileMenuOpen && (
-        <div className="md:hidden border-t border-white/10 bg-[#0a0a0a]/98 backdrop-blur-3xl px-6 py-4 animate-in slide-in-from-top-2">
+        <div className="md:hidden border-t border-border/60 bg-background/95 backdrop-blur-3xl px-6 py-4 animate-in slide-in-from-top-2">
           <nav className="flex flex-col gap-4">
             {navItems.map((item) => {
               const isActive = pathname === item.href
