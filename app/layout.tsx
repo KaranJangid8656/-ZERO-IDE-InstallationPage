@@ -11,21 +11,8 @@ export const metadata: Metadata = {
   title: '-ZERO IDE | Real-Time Collaborative Code Editor',
   description: 'A collaborative code editor that allows multiple developers to edit the same codebase simultaneously. Built with real-time synchronization, WebSockets, and CRDT technology.',
   icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
-    apple: '/apple-icon.png',
+    icon: '/favicon.png',
+    apple: '/favicon.png',
   },
 }
 
