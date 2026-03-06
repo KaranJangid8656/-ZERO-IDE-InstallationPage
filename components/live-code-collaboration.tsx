@@ -18,7 +18,7 @@ export function LiveCodeCollaboration() {
     <section className="py-24 sm:py-32 overflow-hidden bg-background">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+          <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl translate-y-7">
             A Complete Collaborative Workspace
           </h2>
         </div>

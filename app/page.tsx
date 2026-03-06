@@ -21,11 +21,11 @@ export default function Page() {
       <SiteHeader />
       <main>
         <HeroSection />
-        <CollaborationShowcase />
+        <LiveCodeCollaboration />
         <Divider />
         <LiveCollaborationSteps />
         <JoinRoomSteps />
-        <LiveCodeCollaboration />
+        <CollaborationShowcase />
         <Divider />
         <PlatformDownloads />
         <Divider />
