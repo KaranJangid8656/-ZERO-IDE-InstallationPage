@@ -8,7 +8,7 @@ const _inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const _jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains" });
 
 export const metadata: Metadata = {
-  title: '-Zero IDE | Real-Time Collaborative Code Editor',
+  title: '-ZERO IDE | Real-Time Collaborative Code Editor',
   description: 'A collaborative code editor that allows multiple developers to edit the same codebase simultaneously. Built with real-time synchronization, WebSockets, and CRDT technology.',
   icons: {
     icon: [

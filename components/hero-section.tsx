@@ -67,21 +67,21 @@ export function HeroSection() {
 
       <div className="relative z-10 mx-auto max-w-7xl flex flex-col gap-12 lg:flex-row lg:items-center lg:gap-16">
         {/* Left -- text content (Move to left as it was earlier) */}
-        <div className="flex flex-col items-start gap-6 lg:max-w-md xl:max-w-lg shrink-0">
+        <div className="flex flex-col items-start gap-6 lg:max-w-md xl:max-w-lg shrink-0 ml-[38px]">
           <h1 className="flex flex-col items-start gap-2 tracking-tight text-foreground text-balance">
             <span className="text-xl md:text-2xl font-medium text-muted-foreground/80">
               Install
             </span>
             <span className="font-mono text-4xl md:text-5xl lg:text-7xl font-bold bg-gradient-to-r from-foreground via-primary to-foreground bg-[length:200%_auto] bg-clip-text text-transparent animate-shine">
-              -Zero IDE
+              -ZERO IDE
             </span>
           </h1>
 
           <div className="flex flex-col gap-1">
-            <p className="text-lg text-muted-foreground/90 pl-[60px] border-l-2 border-primary/20 ml-2">
+            <p className="text-lg text-muted-foreground/90 pl-[60px] ml-2">
               Code collaboration made simple
             </p>
-            <p className="text-lg text-muted-foreground/80 pl-[75px] border-l-2 border-primary/10 ml-2">
+            <p className="text-lg text-muted-foreground/80 pl-[75px] ml-2">
               Develop together, anywhere
             </p>
           </div>
@@ -222,7 +222,7 @@ export function HeroSection() {
             </div>
 
             {/* Background Terminal (Top Left) */}
-            <div className="absolute -top-16 -left-28 w-64 h-48 bg-background/80 backdrop-blur-xl border border-primary/40 rounded-lg p-3.5 font-mono text-[11px] text-foreground/90 overflow-hidden shadow-2xl z-20 animate-float">
+            <div className="absolute -top-16 -left-28 w-64 h-48 bg-background/80 backdrop-blur-xl border border-primary/40 rounded-lg p-3.5 font-mono text-[11px] text-foreground/90 overflow-hidden shadow-2xl z-20 animate-float-subtle" style={{ backfaceVisibility: 'hidden', transform: 'translate3d(0, 0, 0)' }}>
               <div className="flex items-center justify-between mb-3 border-b border-primary/30 pb-2">
                 <div className="flex gap-2">
                   <div className="w-2 h-2 rounded-full bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.4)]" />
@@ -231,7 +231,8 @@ export function HeroSection() {
                 </div>
                 <span className="text-[9px] opacity-60 uppercase tracking-widest font-bold">Terminal v1.1.0</span>
               </div>
-              <div className="space-y-2">
+              <div className="relative h-full [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)]">
+                <div className="space-y-2 animate-terminal-scroll">
                 <div className="flex gap-3">
                   <span className="text-primary font-bold opacity-70">$</span>
                   <p className="font-medium tracking-tight">initializing_kernel...</p>
@@ -246,24 +247,24 @@ export function HeroSection() {
                 </div>
                 <div className="flex gap-3">
                   <span className="text-primary font-bold opacity-70">$</span>
-                  <p className="font-bold text-primary">Zero-IDE: ready</p>
+                  <p className="font-medium tracking-tight">syncing_workspace: 98%</p>
+                </div>
+                <div className="flex gap-3">
+                  <span className="text-primary font-bold opacity-70">$</span>
+                  <p className="font-medium tracking-tight">secure_tunnel: active</p>
+                </div>
+                <div className="flex gap-3">
+                  <span className="text-primary font-bold opacity-70">$</span>
+                  <p className="font-bold text-primary">-ZERO IDE: ready</p>
                 </div>
                 <div className="flex gap-3">
                   <span className="text-primary font-bold opacity-70">$</span>
                   <p className="animate-pulse">_</p>
                 </div>
               </div>
+              </div>
             </div>
 
-            {/* Status Card Above Globe */}
-            <div className="absolute -top-12 inset-x-0 m-auto w-fit flex items-center gap-3 px-3 py-2 rounded border border-primary/20 bg-primary/5 backdrop-blur-md animate-float-subtle pointer-events-none shadow-[0_0_15px_rgba(var(--color-primary),0.05)]">
-              <div className="flex items-center gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981]" />
-                <span className="font-mono text-[10px] text-primary/80 uppercase tracking-widest">System Status: Optimal</span>
-              </div>
-              <div className="h-2 w-[1px] bg-primary/20" />
-              <span className="font-mono text-[10px] text-primary animate-flicker">74ms</span>
-            </div>
 
             {/* Atmosphere & Core Glow - Holographic Projection Style */}
             <div className="absolute inset-0 m-auto w-[400px] h-[400px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
@@ -295,7 +296,9 @@ export function HeroSection() {
                   top: label.top, 
                   left: label.left,
                   animationDelay: `${i * -5}s`,
-                  boxShadow: '0 0 10px rgba(var(--color-primary), 0.1)'
+                  boxShadow: '0 0 10px rgba(var(--color-primary), 0.1)',
+                  backfaceVisibility: 'hidden',
+                  transform: 'translate3d(0, 0, 0)'
                 }}
               >
                 <span className="animate-flicker block">{label.text}</span>
@@ -303,7 +306,7 @@ export function HeroSection() {
             ))}
 
             {/* Terminal Status Box */}
-            <div className="absolute -bottom-10 -right-10 w-52 h-28 bg-background/80 backdrop-blur-xl border border-primary/40 rounded-lg p-2.5 font-mono text-[10px] text-foreground/90 overflow-hidden shadow-2xl z-20">
+            <div className="absolute -bottom-10 -right-10 w-52 h-28 bg-background/80 backdrop-blur-xl border border-primary/40 rounded-lg p-2.5 font-mono text-[10px] text-foreground/90 overflow-hidden shadow-2xl z-20" style={{ backfaceVisibility: 'hidden', transform: 'translate3d(0, 0, 0)' }}>
               <div className="flex items-center justify-between mb-2 border-b border-primary/20 pb-1.5">
                 <div className="flex gap-1.5">
                   <div className="w-2 h-2 rounded-full bg-red-500/70" />
@@ -312,7 +315,8 @@ export function HeroSection() {
                 </div>
                 <span className="text-[8px] opacity-40 uppercase tracking-tighter font-bold">Terminal v1.0</span>
               </div>
-              <div className="space-y-1 animate-scroll-up">
+              <div className="relative h-full [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)]">
+                <div className="space-y-1 animate-terminal-scroll">
                 <div className="flex gap-2">
                   <span className="text-primary/60">$</span>
                   <p>initializing_kernel...</p>
@@ -327,13 +331,22 @@ export function HeroSection() {
                 </div>
                 <div className="flex gap-2">
                   <span className="text-primary/60">$</span>
+                  <p>fetching_env_vars...</p>
+                </div>
+                <div className="flex gap-2">
+                  <span className="text-primary/60">$</span>
+                  <p>secure_channel: active</p>
+                </div>
+                <div className="flex gap-2">
+                  <span className="text-primary/60">$</span>
                   <p>load_modules: grid, arc, hub</p>
                 </div>
                 <div className="flex gap-2 text-primary">
                   <span className="text-primary/40">$</span>
-                  <p className="font-bold">Zero-IDE: ready</p>
+                  <p className="font-bold">-ZERO IDE: ready</p>
                 </div>
                 <p className="animate-pulse pl-4">_</p>
+                </div>
               </div>
             </div>
           </div>
@@ -378,13 +391,14 @@ export function HeroSection() {
         @keyframes shine {
           to { background-position: 200% center; }
         }
-        @keyframes scroll-up {
+        @keyframes terminal-scroll {
           0% { transform: translateY(0); }
-          80% { transform: translateY(0); }
-          100% { transform: translateY(-40px); }
+          5% { transform: translateY(0); }
+          95% { transform: translateY(-80px); }
+          100% { transform: translateY(-80px); }
         }
-        .animate-scroll-up {
-          animation: scroll-up 8s ease-in-out infinite;
+        .animate-terminal-scroll {
+          animation: terminal-scroll 12s cubic-bezier(0.4, 0, 0.2, 1) infinite;
         }
         .animate-wobble {
           animation: wobble 15s ease-in-out infinite;

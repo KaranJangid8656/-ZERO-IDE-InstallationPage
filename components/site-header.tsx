@@ -22,7 +22,7 @@ export function SiteHeader() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 h-16">
         <Link href="/" className="flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
           <TerminalSquare className="h-5 w-5 text-foreground" />
-          <span className="font-mono text-sm font-bold text-foreground">-Zero IDE</span>
+          <span className="font-mono text-sm font-bold text-foreground">-ZERO IDE</span>
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex">
