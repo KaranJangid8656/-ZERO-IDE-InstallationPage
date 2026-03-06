@@ -5,6 +5,8 @@ import { PlatformDownloads } from "@/components/platform-downloads"
 import { InstallationGuide } from "@/components/installation-guide"
 import { AfterInstall } from "@/components/after-install"
 import { LiveCollaborationSteps } from "@/components/live-collaboration-steps"
+import { JoinRoomSteps } from "@/components/join-room-steps"
+import { LiveCodeCollaboration } from "@/components/live-code-collaboration"
 import { SiteFooter } from "@/components/site-footer"
 
 function Divider() {
@@ -22,6 +24,8 @@ export default function Page() {
         <CollaborationShowcase />
         <Divider />
         <LiveCollaborationSteps />
+        <JoinRoomSteps />
+        <LiveCodeCollaboration />
         <Divider />
         <PlatformDownloads />
         <Divider />

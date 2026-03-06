@@ -8,13 +8,13 @@ const steps = [
   },
   {
     icon: <Users className="h-5 w-5" />,
-    title: "Create a collaboration room",
-    description: "Start a new session to begin working with your team.",
+    title: "Create a collaboration server",
+    description: "Start a new server to begin working with your team.",
   },
   {
     icon: <Share2 className="h-5 w-5" />,
-    title: "Share the room ID",
-    description: "Send the unique room ID to other developers to invite them.",
+    title: "Share the server ID",
+    description: "Send the unique server ID to other developers to invite them.",
   },
   {
     icon: <Code2 className="h-5 w-5" />,

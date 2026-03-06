@@ -37,10 +37,10 @@ function tokenizeLine(line: string): React.ReactNode[] {
       // Grab the next chunk of plain text until a pattern might match
       const nextSpecial = remaining.slice(1).search(/[/"'`\d()\[\]{}]|import|export|from|const|let|var|function|return|if|else|new|console|true|false|null|undefined|WebSocketServer|JSON|log|send|on|forEach|listen|stringify|=>|===/)
       if (nextSpecial === -1) {
-        tokens.push(<span key={key++} className="text-foreground/80">{remaining}</span>)
+        tokens.push(<span key={key++} className="text-gray-300">{remaining}</span>)
         break
       }
-      tokens.push(<span key={key++} className="text-foreground/80">{remaining.slice(0, nextSpecial + 1)}</span>)
+      tokens.push(<span key={key++} className="text-gray-300">{remaining.slice(0, nextSpecial + 1)}</span>)
       remaining = remaining.slice(nextSpecial + 1)
     }
   }
@@ -111,7 +111,7 @@ const collaborators: CursorPos[] = [
 
 function LineNumbers({ count }: { count: number }) {
   return (
-    <div className="select-none pr-4 text-right text-muted-foreground/70 font-mono text-[11px] leading-[22px]">
+    <div className="select-none pr-4 text-right text-gray-600 font-mono text-[11px] leading-[22px]">
       {Array.from({ length: count }, (_, i) => (
         <div key={i}>{i + 1}</div>
       ))}
@@ -212,26 +212,26 @@ export function EditorSimulation() {
   }, [])
 
   return (
-    <div className="rounded-xl border border-border bg-card overflow-hidden shadow-lg shadow-foreground/[0.03]">
+    <div className="rounded-xl border border-[#30363d] bg-[#0d1117] overflow-hidden shadow-lg shadow-black/20">
       {/* macOS-style title bar */}
-      <div className="flex items-center gap-2 border-b border-border px-4 py-2.5">
+      <div className="flex items-center gap-2 border-b border-[#30363d] px-4 py-2.5 bg-[#161b22]">
         <div className="flex items-center gap-2">
           <span className="h-3 w-3 rounded-full bg-[#ff5f57] shadow-inner" />
           <span className="h-3 w-3 rounded-full bg-[#febc2e] shadow-inner" />
           <span className="h-3 w-3 rounded-full bg-[#28c840] shadow-inner" />
         </div>
         <div className="flex-1 flex items-center justify-center">
-          <span className="font-mono text-[11px] text-muted-foreground/90">server.ts</span>
+          <span className="font-mono text-[11px] text-gray-400">server.ts</span>
         </div>
         <div className="flex items-center gap-3">
           {collaborators.map((c) => (
-            <div key={c.name} className="flex items-center gap-1.5 text-[11px] text-muted-foreground/90">
+            <div key={c.name} className="flex items-center gap-1.5 text-[11px] text-gray-400">
               <Circle className="h-2 w-2" style={{ color: c.color, fill: c.color }} />
               <span>{c.name}</span>
             </div>
           ))}
           {cursors.length > 0 && (
-            <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground/90">
+            <div className="flex items-center gap-1.5 text-[11px] text-gray-400">
               <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
               <span>Live</span>
             </div>
@@ -243,7 +243,7 @@ export function EditorSimulation() {
       <div className="flex p-3 font-mono text-[11px] leading-[22px] relative overflow-hidden h-[512px]">
         <LineNumbers count={26} />
         <div className="flex-1 overflow-hidden">
-          <pre className="text-foreground/80 whitespace-pre">
+          <pre className="text-gray-300 whitespace-pre">
             <code>
               {lines.map((line, i) => (
                 <div key={i}>{tokenizeLine(line)}{line === "" && "\u200B"}</div>

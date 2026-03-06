@@ -11,7 +11,7 @@ const platforms = [
     steps: [
       "Download the installer",
       "Run the setup file",
-      "Launch -Zero IDE and create a collaboration room",
+      "Launch -Zero IDE and create a collaboration server",
     ],
   },
   {

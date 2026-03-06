@@ -1,14 +1,14 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Copy, Plus, Users, CopyCheck, Zap, MousePointer2, TerminalSquare } from "lucide-react"
+import { LogIn, Users, MousePointer2, CheckCircle2, TerminalSquare } from "lucide-react"
 
-export function LiveCollaborationSteps() {
+export function JoinRoomSteps() {
   const [step, setStep] = useState(0)
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setStep((prev) => (prev + 1) % 5)
+      setStep((prev) => (prev + 1) % 6)
     }, 1200)
     return () => clearInterval(interval)
   }, [])
@@ -16,8 +16,9 @@ export function LiveCollaborationSteps() {
   return (
     <section className="py-24 sm:py-32 overflow-hidden bg-background">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="flex flex-col gap-12 lg:flex-row lg:items-center lg:gap-16">
-          {/* Left Side: Animated Editor Simulation Box */}
+        
+        <div className="flex flex-col gap-12 lg:flex-row-reverse lg:items-center lg:gap-16">
+          {/* Animated Editor Simulation Box */}
           <div className="flex-1 min-w-0 dark">
             <div className="flex flex-col rounded-2xl bg-[#1a1b1e] border border-white/5 overflow-hidden shadow-2xl h-[400px]">
               {/* Window Header */}
@@ -39,24 +40,34 @@ export function LiveCollaborationSteps() {
                  <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:24px_24px]"></div>
                  
                  <div className="relative z-10 w-full max-w-sm rounded-xl border border-white/5 bg-[#1a1b1e] p-6 shadow-2xl flex flex-col items-center text-center">
-                   <div className="h-12 w-12 rounded-full bg-primary/20 text-primary flex items-center justify-center mb-4">
-                     <Users className="h-6 w-6" />
-                   </div>
-                   <h3 className="text-lg font-medium text-white mb-2">Live Collaboration</h3>
-                   <p className="text-sm text-gray-400 mb-6">Create a secure server to start pair programming with your team.</p>
                    
+                   <h3 className="text-lg font-medium text-white mb-4">Join Server</h3>
+                   
+                   {/* Input Field */}
+                   <div className="w-full relative mb-4">
+                     <div className={`w-full rounded-md border text-left px-3 py-2.5 text-sm transition-all duration-300 ${
+                       step >= 1 ? "border-primary/50 ring-1 ring-primary/20 bg-black/20" : "border-white/10 bg-black/10"
+                     }`}>
+                       <span className={`font-mono ${step >= 1 ? "text-white" : "text-gray-500"}`}>
+                         {step >= 1 ? "MXR-48291" : "Enter Server ID..."}
+                       </span>
+                       {step === 1 && <span className="absolute ml-1 inline-block w-0.5 h-4 bg-primary animate-pulse top-3"></span>}
+                     </div>
+                   </div>
+
+                   {/* Join Button */}
                    <button 
-                     className={`relative flex items-center justify-center gap-2 w-full rounded-md bg-white px-4 py-3 text-black text-sm font-medium shadow-sm transition-all duration-300 ${
-                       step === 1 || step === 2 ? "scale-95 bg-primary/90 text-white" : "scale-100"
+                     className={`relative flex items-center justify-center gap-2 w-full rounded-md bg-white px-4 py-2.5 text-black text-sm font-medium shadow-sm transition-all duration-300 ${
+                       step === 2 || step === 3 ? "scale-95 bg-primary/90 text-white" : "scale-100"
                      }`}
                    >
-                     <Plus className="h-4 w-4" /> Create Server
+                     <LogIn className="h-4 w-4" /> Join Server
                      
                      {/* Animated Cursor */}
                      <div 
                        className={`absolute transition-all duration-700 pointer-events-none z-50 ${
-                         step === 0 ? "opacity-100 translate-x-12 translate-y-12" :
-                         step === 1 ? "opacity-100 translate-x-0 translate-y-2 !duration-300" :
+                         step <= 1 ? "opacity-100 translate-x-16 translate-y-16" :
+                         step === 2 ? "opacity-100 translate-x-0 translate-y-2 !duration-300" :
                          "opacity-0 translate-x-4 translate-y-8"
                        }`}
                      >
@@ -64,46 +75,38 @@ export function LiveCollaborationSteps() {
                      </div>
                    </button>
                    
-                   {/* Animated Popup for Server ID */}
+                   {/* Success Overlay */}
                    <div 
-                     className={`absolute -bottom-16 left-1/2 -translate-x-1/2 w-full max-w-[280px] rounded-lg border border-white/10 bg-[#1e1f23] p-4 shadow-2xl transition-all duration-500 ${
-                       step >= 2 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                     className={`absolute inset-0 z-20 rounded-xl bg-[#1a1b1e] flex flex-col items-center justify-center p-6 transition-all duration-500 ${
+                       step >= 4 ? "opacity-100 scale-100 visible" : "opacity-0 scale-95 invisible"
                      }`}
                    >
-                     <div className="flex items-center justify-between mb-2">
-                       <p className="text-xs font-medium text-gray-400">Server Created</p>
-                       <span className="flex h-2 w-2 rounded-full bg-green-500 animate-pulse"></span>
-                     </div>
-                     <div className="flex items-center justify-between rounded-md bg-black/40 px-3 py-2 border border-white/5">
-                        <span className="font-mono text-sm font-bold text-primary tracking-wider">MXR-48291</span>
-                        {step === 3 ? (
-                          <CopyCheck className="h-4 w-4 text-primary" />
-                        ) : (
-                          <Copy className="h-4 w-4 text-gray-500" />
-                        )}
-                     </div>
+                     <CheckCircle2 className="h-12 w-12 text-green-500 mb-4" />
+                     <h4 className="text-lg font-bold text-white mb-1">Success!</h4>
+                     <p className="text-sm font-medium text-gray-400">Joined Karan's Server</p>
                    </div>
+
                  </div>
               </div>
             </div>
           </div>
 
-          {/* Right Side: Steps */}
+          {/* Text/Steps Side */}
           <div className="flex flex-col gap-8 lg:max-w-md xl:max-w-lg shrink-0">
             <div className="mb-2">
               <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl text-left">
-                Real-Time Pair Programming
+                Join a Server
               </h2>
             </div>
             <div className="space-y-6 pt-2">
               {/* Step 1 */}
-              <div className={`relative pl-12 transition-all duration-300 ${step === 0 || step === 1 ? "opacity-100" : "opacity-50"}`}>
+              <div className={`relative pl-12 transition-all duration-300 ${step <= 1 ? "opacity-100" : "opacity-50"}`}>
                 <div className="absolute left-0 top-0 flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-primary font-bold text-sm ring-1 ring-primary/20">
                   1
                 </div>
-                <h3 className="text-lg font-medium text-foreground">Create a Server</h3>
+                <h3 className="text-lg font-medium text-foreground">Enter Server ID</h3>
                 <p className="mt-2 text-sm text-muted-foreground">
-                  Launch the IDE and click the "Create Server" button to initialize a new secure collaborative workspace.
+                  Enter the unique Server ID shared by your teammate directly into the "Join Server" dialog.
                 </p>
               </div>
 
@@ -112,24 +115,25 @@ export function LiveCollaborationSteps() {
                 <div className="absolute left-0 top-0 flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-primary font-bold text-sm ring-1 ring-primary/20">
                   2
                 </div>
-                <h3 className="text-lg font-medium text-foreground">Generate Server ID</h3>
+                <h3 className="text-lg font-medium text-foreground">Join Server</h3>
                 <p className="mt-2 text-sm text-muted-foreground">
-                  A unique, secure Server ID is instantly generated. Copy this ID to your clipboard.
+                  Click 'Join Server' to securely connect to the pair programming server. 
                 </p>
               </div>
 
               {/* Step 3 */}
-              <div className={`relative pl-12 transition-all duration-300 ${step === 4 ? "opacity-100" : "opacity-50"}`}>
+              <div className={`relative pl-12 transition-all duration-300 ${step >= 4 ? "opacity-100" : "opacity-50"}`}>
                 <div className="absolute left-0 top-0 flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-primary font-bold text-sm ring-1 ring-primary/20">
                   3
                 </div>
-                <h3 className="text-lg font-medium text-foreground">Share & Collaborate</h3>
+                <h3 className="text-lg font-medium text-foreground">You're In!</h3>
                 <p className="mt-2 text-sm text-muted-foreground">
-                  Share the ID with teammates. Once they join, you can write, review, and debug code together in real-time.
+                  You are instantly dropped into Karan's Server to start collaborating in real time without any setup.
                 </p>
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
