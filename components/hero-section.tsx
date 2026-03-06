@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Download, Apple, Monitor } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
@@ -22,10 +22,15 @@ function WindowsIcon({ className }: { className?: string }) {
 
 export function HeroSection() {
   const [platform, setPlatform] = useState<Platform>("windows")
+  const [mounted, setMounted] = useState(false)
   const current = platformData[platform]
 
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   return (
-    <section className="relative px-6 pt-50 pb-20 overflow-hidden">
+    <section className="relative px-6 pt-40 pb-20 overflow-hidden">
       {/* Enhanced Dynamic Animated Background */}
       <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
         <div className="absolute inset-0 bg-background" />
@@ -39,7 +44,7 @@ export function HeroSection() {
 
         {/* Floating Cyber Particles */}
         <div className="absolute inset-0">
-          {[...Array(25)].map((_, i) => (
+          {mounted && [...Array(25)].map((_, i) => (
             <div
               key={i}
               className="absolute rounded-full bg-foreground/10 animate-float"
@@ -67,16 +72,16 @@ export function HeroSection() {
             <span className="text-xl md:text-2xl font-medium text-muted-foreground/80">
               Install
             </span>
-            <span className="font-mono text-4xl md:text-5xl lg:text-7xl font-bold bg-gradient-to-b from-foreground via-foreground/80 to-muted-foreground bg-clip-text text-transparent">
+            <span className="font-mono text-4xl md:text-5xl lg:text-7xl font-bold bg-gradient-to-r from-foreground via-primary to-foreground bg-[length:200%_auto] bg-clip-text text-transparent animate-shine">
               -Zero IDE
             </span>
           </h1>
 
           <div className="flex flex-col gap-1">
-            <p className="text-lg text-muted-foreground pl-[60px]">
+            <p className="text-lg text-muted-foreground/90 pl-[60px] border-l-2 border-primary/20 ml-2">
               Code collaboration made simple
             </p>
-            <p className="text-lg text-muted-foreground pl-[75px]">
+            <p className="text-lg text-muted-foreground/80 pl-[75px] border-l-2 border-primary/10 ml-2">
               Develop together, anywhere
             </p>
           </div>
@@ -130,7 +135,12 @@ export function HeroSection() {
 
         {/* Right -- Premium Holographic Globe */}
         <div className="flex-1 flex items-center justify-center p-4 relative hidden lg:flex group">
-          <div className="relative w-[500px] h-[500px] animate-wobble" style={{ perspective: '2000px' }}>
+          <div 
+            className="relative w-[500px] h-[500px] lg:translate-x-10 animate-wobble" 
+            style={{ 
+              perspective: '2000px',
+            }}
+          >
             
             {/* Outer Orbital Ring (Fixed) */}
             <div className="absolute inset-[-20px] rounded-full border border-primary/5 shadow-[0_0_50px_var(--color-primary)] pointer-events-none opacity-20 animate-pulse" />
@@ -164,20 +174,42 @@ export function HeroSection() {
                           borderWidth: i === 4 ? '2px' : '0.5px'
                         }}
                       />
-                      {/* Data Nodes at intersections */}
-                      {[0, 90, 180, 270].map((angle) => (
-                        <div
-                          key={`node-${i}-${angle}`}
-                          className="absolute w-1 h-1 bg-primary rounded-full shadow-[0_0_8px_var(--color-primary)] opacity-80"
-                          style={{
-                            transform: `translateY(${y}px) rotateY(${angle}deg) translateZ(${radius * scale}px)`,
-                          }}
-                        />
-                      ))}
                     </div>
                   );
                 })}
+
+                {/* Holographic Connection Arcs */}
+                {mounted && [...Array(3)].map((_, i) => (
+                  <div 
+                    key={`arc-${i}`}
+                    className="absolute inset-0 border-t-2 border-primary/40 rounded-[50%] animate-pulse"
+                    style={{ 
+                      transform: `rotateX(${60 + i * 40}deg) rotateZ(${i * 120}deg) scale(1.1)`,
+                      filter: 'blur(1px)',
+                      animationDelay: `${i * -2}s`
+                    }}
+                  />
+                ))}
+
+                {/* Pulsing Data Hubs */}
+                {mounted && [
+                  { lat: 20, lng: 45 },
+                  { lat: -30, lng: 120 },
+                  { lat: 45, lng: -60 },
+                  { lat: 10, lng: -150 },
+                ].map((pos, i) => (
+                  <div
+                    key={`hub-${i}`}
+                    className="absolute w-2 h-2 bg-primary rounded-full shadow-[0_0_15px_var(--color-primary)]"
+                    style={{
+                      transform: `rotateY(${pos.lng}deg) rotateX(${pos.lat}deg) translateZ(250px)`,
+                      animation: 'pulse 2s ease-in-out infinite',
+                      animationDelay: `${i * 0.5}s`
+                    }}
+                  />
+                ))}
               </div>
+
 
               {/* Scanning Energy Ring */}
               <div 
@@ -189,9 +221,121 @@ export function HeroSection() {
               />
             </div>
 
-            {/* Atmosphere & Core Glow */}
+            {/* Background Terminal (Top Left) */}
+            <div className="absolute -top-16 -left-28 w-64 h-48 bg-background/80 backdrop-blur-xl border border-primary/40 rounded-lg p-3.5 font-mono text-[11px] text-foreground/90 overflow-hidden shadow-2xl z-20 animate-float">
+              <div className="flex items-center justify-between mb-3 border-b border-primary/30 pb-2">
+                <div className="flex gap-2">
+                  <div className="w-2 h-2 rounded-full bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.4)]" />
+                  <div className="w-2 h-2 rounded-full bg-yellow-500 shadow-[0_0_8px_rgba(245,158,11,0.4)]" />
+                  <div className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(16,185,129,0.4)]" />
+                </div>
+                <span className="text-[9px] opacity-60 uppercase tracking-widest font-bold">Terminal v1.1.0</span>
+              </div>
+              <div className="space-y-2">
+                <div className="flex gap-3">
+                  <span className="text-primary font-bold opacity-70">$</span>
+                  <p className="font-medium tracking-tight">initializing_kernel...</p>
+                </div>
+                <div className="flex gap-3">
+                  <span className="text-primary font-bold opacity-70">$</span>
+                  <p className="font-medium tracking-tight">auth_success: dev_01</p>
+                </div>
+                <div className="flex gap-3">
+                  <span className="text-primary font-bold opacity-70">$</span>
+                  <p className="font-medium tracking-tight text-emerald-500/90">mesh_connected: true</p>
+                </div>
+                <div className="flex gap-3">
+                  <span className="text-primary font-bold opacity-70">$</span>
+                  <p className="font-bold text-primary">Zero-IDE: ready</p>
+                </div>
+                <div className="flex gap-3">
+                  <span className="text-primary font-bold opacity-70">$</span>
+                  <p className="animate-pulse">_</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Status Card Above Globe */}
+            <div className="absolute -top-12 inset-x-0 m-auto w-fit flex items-center gap-3 px-3 py-2 rounded border border-primary/20 bg-primary/5 backdrop-blur-md animate-float-subtle pointer-events-none shadow-[0_0_15px_rgba(var(--color-primary),0.05)]">
+              <div className="flex items-center gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981]" />
+                <span className="font-mono text-[10px] text-primary/80 uppercase tracking-widest">System Status: Optimal</span>
+              </div>
+              <div className="h-2 w-[1px] bg-primary/20" />
+              <span className="font-mono text-[10px] text-primary animate-flicker">74ms</span>
+            </div>
+
+            {/* Atmosphere & Core Glow - Holographic Projection Style */}
+            <div className="absolute inset-0 m-auto w-[400px] h-[400px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+            
+            {/* Holographic Base "Projector" Disk */}
+            <div className="absolute inset-x-0 bottom-10 m-auto w-64 h-8 bg-primary/30 rounded-full blur-[40px] transform rotateX(80deg) pointer-events-none animate-pulse" />
+            <div className="absolute inset-x-0 bottom-12 m-auto w-48 h-4 border border-primary/20 rounded-full transform rotateX(80deg) pointer-events-none" />
+            
+            {/* Holographic Projector Beam */}
+            <div 
+              className="absolute inset-x-0 bottom-12 m-auto w-48 h-64 bg-gradient-to-t from-primary/20 to-transparent pointer-events-none opacity-40"
+              style={{ clipPath: 'polygon(20% 100%, 80% 100%, 100% 0, 0 0)', transform: 'translateY(50px)' }}
+            />
+            
+            {/* Core Glows */}
             <div className="absolute inset-0 m-auto w-48 h-48 bg-primary/20 rounded-full blur-[80px] animate-pulse pointer-events-none" />
             <div className="absolute inset-0 m-auto w-12 h-12 bg-primary/40 rounded-full blur-[40px] pointer-events-none" />
+
+            {/* Floating Data Labels */}
+            {mounted && [
+              { top: '15%', left: '80%', text: 'LAT: 40.7128' },
+              { top: '85%', left: '20%', text: 'LNG: -74.0060' },
+              { top: '50%', left: '90%', text: 'STATUS: ACTIVE' },
+            ].map((label, i) => (
+              <div 
+                key={i}
+                className="absolute font-mono text-[10px] text-primary/60 border border-primary/20 bg-primary/5 px-2 py-1 rounded backdrop-blur-sm animate-float-subtle pointer-events-none"
+                style={{ 
+                  top: label.top, 
+                  left: label.left,
+                  animationDelay: `${i * -5}s`,
+                  boxShadow: '0 0 10px rgba(var(--color-primary), 0.1)'
+                }}
+              >
+                <span className="animate-flicker block">{label.text}</span>
+              </div>
+            ))}
+
+            {/* Terminal Status Box */}
+            <div className="absolute -bottom-10 -right-10 w-52 h-28 bg-background/80 backdrop-blur-xl border border-primary/40 rounded-lg p-2.5 font-mono text-[10px] text-foreground/90 overflow-hidden shadow-2xl z-20">
+              <div className="flex items-center justify-between mb-2 border-b border-primary/20 pb-1.5">
+                <div className="flex gap-1.5">
+                  <div className="w-2 h-2 rounded-full bg-red-500/70" />
+                  <div className="w-2 h-2 rounded-full bg-yellow-500/70" />
+                  <div className="w-2 h-2 rounded-full bg-green-500/70" />
+                </div>
+                <span className="text-[8px] opacity-40 uppercase tracking-tighter font-bold">Terminal v1.0</span>
+              </div>
+              <div className="space-y-1 animate-scroll-up">
+                <div className="flex gap-2">
+                  <span className="text-primary/60">$</span>
+                  <p>initializing_kernel...</p>
+                </div>
+                <div className="flex gap-2 text-emerald-500/90">
+                  <span className="text-emerald-500/40">$</span>
+                  <p>auth_success: dev_01</p>
+                </div>
+                <div className="flex gap-2">
+                  <span className="text-primary/60">$</span>
+                  <p>connecting_mesh...</p>
+                </div>
+                <div className="flex gap-2">
+                  <span className="text-primary/60">$</span>
+                  <p>load_modules: grid, arc, hub</p>
+                </div>
+                <div className="flex gap-2 text-primary">
+                  <span className="text-primary/40">$</span>
+                  <p className="font-bold">Zero-IDE: ready</p>
+                </div>
+                <p className="animate-pulse pl-4">_</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -218,11 +362,44 @@ export function HeroSection() {
           80% { opacity: 0.5; }
           100% { transform: translateY(-100px) translateX(30px) rotate(360deg); opacity: 0; }
         }
+        @keyframes float-subtle {
+          0%, 100% { transform: translateY(0) translateX(0); }
+          50% { transform: translateY(-10px) translateX(5px); }
+        }
+        @keyframes flicker {
+          0%, 100% { opacity: 1; }
+          30% { opacity: 1; }
+          31% { opacity: 0.5; }
+          32% { opacity: 1; }
+          80% { opacity: 1; }
+          81% { opacity: 0.7; }
+          82% { opacity: 1; }
+        }
+        @keyframes shine {
+          to { background-position: 200% center; }
+        }
+        @keyframes scroll-up {
+          0% { transform: translateY(0); }
+          80% { transform: translateY(0); }
+          100% { transform: translateY(-40px); }
+        }
+        .animate-scroll-up {
+          animation: scroll-up 8s ease-in-out infinite;
+        }
         .animate-wobble {
           animation: wobble 15s ease-in-out infinite;
         }
         .animate-float {
           animation: float linear infinite;
+        }
+        .animate-float-subtle {
+          animation: float-subtle 6s ease-in-out infinite;
+        }
+        .animate-flicker {
+          animation: flicker 4s linear infinite;
+        }
+        .animate-shine {
+          animation: shine 8s linear infinite;
         }
       `}</style>
     </section>
