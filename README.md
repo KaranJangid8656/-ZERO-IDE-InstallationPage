@@ -1,6 +1,5 @@
 <div align="center">
-  <img src="https://res.cloudinary.com/dx9bvma03/image/upload/v1772822222/WhatsApp_Image_2026-03-06_at_23.04.27_khgwqn.jpg" alt="-ZERO IDE Logo" width="150" />
-
+  
   <h1>-ZERO IDE</h1>
   
   <p>A collaborative code editor that allows multiple developers to edit the same codebase simultaneously. Built with real-time synchronization, WebSockets, and CRDT technology.</p>
