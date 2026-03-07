@@ -50,19 +50,11 @@ export function SiteFooter() {
         <div className="absolute top-[20%] left-[-10%] w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[100px]" />
       </div>
 
-      {/* Large Brand Title Background (Animated) */}
-      <div className="absolute bottom-[137px] left-0 w-full select-none pointer-events-none opacity-[0.03] overflow-hidden whitespace-nowrap py-4">
-        <div className="animate-marquee inline-block">
-          <span className="font-mono text-[18vw] font-black leading-none uppercase tracking-[-0.05em] px-[5vw]">
-            -ZERO IDE
-          </span>
-          <span className="font-mono text-[18vw] font-black leading-none uppercase tracking-[-0.05em] px-[5vw]">
-            -ZERO IDE
-          </span>
-          <span className="font-mono text-[18vw] font-black leading-none uppercase tracking-[-0.05em] px-[5vw]">
-            -ZERO IDE
-          </span>
-        </div>
+      {/* Large Brand Title Background (Static) */}
+      <div className="absolute bottom-[137px] left-0 w-full select-none pointer-events-none opacity-[0.15] overflow-hidden flex justify-center whitespace-nowrap py-4">
+        <span className="font-mono text-[18vw] font-black leading-none uppercase tracking-[-0.05em] px-[5vw]">
+          -ZERO IDE
+        </span>
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 pt-24 pb-12">
@@ -147,15 +139,7 @@ export function SiteFooter() {
           </div>
         </div>
       </div>
-      <style jsx>{`
-        @keyframes marquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-33.33%); }
-        }
-        .animate-marquee {
-          animation: marquee 20s linear infinite;
-        }
-      `}</style>
+
     </footer>
   )
 }
